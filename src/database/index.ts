@@ -33,12 +33,11 @@ function seed() {
 
         seedTable();
 
-        db.close();
+        // db.close();
 
     })
 }
 
-// seed()
-
+seed()
 
 

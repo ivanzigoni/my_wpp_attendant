@@ -1,6 +1,6 @@
 import { Client, Message } from "whatsapp-web.js";
 import { db } from "../../database";
-import { Album } from "../../database/album";
+import { Album } from "../../database/models/album";
 
 export function main(msg: Message, client: Client) {
 
