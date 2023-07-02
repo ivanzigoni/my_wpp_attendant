@@ -2,10 +2,8 @@ import fs from "fs";
 import {Client, Message} from "whatsapp-web.js";
 import split2 from "split2"
 import * as path from "path";
+import {sleep} from "../../sleep";
 
-function sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 export function main(msg: Message, client: Client) {
 
     let multiplier = 1;
