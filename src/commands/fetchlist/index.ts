@@ -4,7 +4,7 @@ import { Album } from "../../database/models/album";
 
 export function main(msg: Message, client: Client) {
 
-    const list = db.all(`
+    db.all(`
         SELECT * FROM albums;
     `, (err, rows: Album[]) => {
         if (err) {
@@ -18,7 +18,7 @@ export function main(msg: Message, client: Client) {
                 rows.reduce((acc, album) => {
 
                     const line =
-                        `${album.title}, ${album.artist}\n${album.release}\n${album.description}\n========\n`
+                        `[${album.album_id}]${album.title}, ${album.artist}\n${album.release}\n${album.description}\n========\n`
 
                     acc += line
 
@@ -28,7 +28,5 @@ export function main(msg: Message, client: Client) {
         }
 
     })
-
-
 
 }

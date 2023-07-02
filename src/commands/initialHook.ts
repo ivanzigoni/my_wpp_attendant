@@ -14,7 +14,6 @@ export function main(client: Client) {
     });
 
     client.on('message', msg => {
-        console.log("aki")
         if (msg.body === '!ping') {
             msg.reply('pong');
         }

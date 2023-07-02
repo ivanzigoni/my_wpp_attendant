@@ -2,7 +2,7 @@ import fs from "fs";
 import {Client, Message} from "whatsapp-web.js";
 import split2 from "split2"
 import * as path from "path";
-import {sleep} from "../../sleep";
+import {sleep} from "../../utils/sleep";
 
 export function main(msg: Message, client: Client) {
 

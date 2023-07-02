@@ -9,13 +9,12 @@ export function main(client: Client) {
             .filter(command => !command.includes("."))
 
     const commandsMap = commands.reduce((acc, command) => {
-        console.log(path.resolve(process.cwd(), "dist", "commands", command ))
         acc["!" + command] = {
             name: "!" + command,
-            main: require(path.resolve(process.cwd(), "dist", "commands", command )).main
+            main: require(path.resolve(process.cwd(), "dist", "commands", command)).main
         }
         return acc;
-    }, {} as { [key: string]: { name: string, main: (msg: Message, client: Client) => void } } )
+    }, {} as { [key: string]: { name: string, main: (msg: Message, client: Client, payload?: string[]) => void } } )
 
     console.log(commandsMap, " commands available for message_create")
 
@@ -29,9 +28,12 @@ export function main(client: Client) {
             body
         } = msg;
 
-        if (commandsMap[body]) {
-            console.log("activating command " + commandsMap[body].name)
-            commandsMap[body].main(msg, client);
+        const [incomingCommand, ...payload] = body.split("\n")
+
+
+        if (commandsMap[incomingCommand]) {
+            console.log("activating command " + commandsMap[incomingCommand].name)
+            commandsMap[incomingCommand].main(msg, client, payload);
         }
 
     })
