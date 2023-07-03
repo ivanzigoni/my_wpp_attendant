@@ -2,6 +2,15 @@ import { Client, Message } from "whatsapp-web.js";
 import { db } from "../../database";
 import { Album } from "../../database/models/album";
 
+/*
+
+template
+
+!deletefromlist
+id
+
+*/
+
 export function main(msg: Message, client: Client, payload: string[]) {
 
     if (!payload[0]) {
