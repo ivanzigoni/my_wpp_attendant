@@ -3,4 +3,5 @@ node_modules
 .wwebjs_cache
 .env
 dist
-assets/contacts/contacts.txt
+assets/contacts/**/*.*
+assets/messages/**/*.*
