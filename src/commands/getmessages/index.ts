@@ -20,14 +20,13 @@ function writeToCsv(msgs: { from: string, body: string, timestamp: string }[], c
         )
     )
 
-    st.write("from,body,timestamp")
+    st.write("from,body,timestamp\n")
 
     for (let i = 0; i < msgs.length; i++) {
         st.write(`${msgs[i].from},${msgs[i].body},${msgs[i].timestamp}\n`)
     }
 
     st.close()
-
 }
 
 export async function main(msg: Message, client: Client, payload: string[]) {
@@ -44,11 +43,18 @@ export async function main(msg: Message, client: Client, payload: string[]) {
 
     if (ctt) {
 
+        await msg.react("😬");
+
         const extractor = new Extractor(client);
 
         const messages = await extractor.getMessagesByContact(ctt, Number(limit));
 
         writeToCsv(messages, ctt);
+
+        await client.sendMessage(msg.from, "success");
+
+        await msg.react("😀");
+
 
     } else {
 
