@@ -26,7 +26,7 @@ export function main(msg: Message, client: Client, payload: string[]) {
 
 
     if (!title || !artist || !release || !description) {
-        client.sendMessage(
+        return client.sendMessage(
             msg.from,
             "all fields required"
         )
